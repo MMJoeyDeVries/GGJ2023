@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class GameGame : MonoBehaviour
+class Game : MonoBehaviour
 {
   public GameState initialState;
 
