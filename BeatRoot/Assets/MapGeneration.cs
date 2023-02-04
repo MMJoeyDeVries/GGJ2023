@@ -40,21 +40,14 @@ public class MapGeneration : MonoBehaviour
         _MeshTilingBottom = _BottomSpline.GetComponent<SplineMeshTiling>();
         
         _splineEndX = CreateNewSegment(25);
-        Debug.Log("New Spline End: " + _splineEndX);
     }
 
     private float CreateNewSegment(int count)
     {
-     
-        
-    
-        
         for (int i = 0; i < count; ++i)
         {
             float maxYDiff = MaxY - _CenterLastSplinePosTop.y;
             float minYDiff = _CenterLastSplinePosTop.y - MinY;
-            Debug.Log("MaxYDiff: " + maxYDiff);
-            Debug.Log("MinYDiff: " + minYDiff);
 
             float random = Random.Range(-5.0f + Mathf.Max(5.0f - minYDiff), 5.0f - Mathf.Max(5.0f - maxYDiff, 0.0f));
             // top spline
@@ -94,12 +87,15 @@ public class MapGeneration : MonoBehaviour
     
     void Update()
     {
-        if (Mathf.Abs(Player.position.x - _splineEndX) < 10.0f)
+        if (Player != null)
         {
-            Debug.Log("New segment!");
-            _splineEndX = CreateNewSegment(10);
+            if (Mathf.Abs(Player.position.x - _splineEndX) < 10.0f)
+            {
+                Debug.Log("New segment!");
+                _splineEndX = CreateNewSegment(10);
+            }
+
+            // Debug.Log(IsInTunnel(Player.position).ToString());
         }
-      
-        // Debug.Log(IsInTunnel(Player.position).ToString());
     }
 }
