@@ -6,17 +6,21 @@ using Unity.VisualScripting;
 
 public class MapGeneration : MonoBehaviour
 {
-    public Transform TunnelTester;
+    public Transform Player;
     
     public Spline _TopSpline;
-    public Spline _CenterSpline;
     public Spline _BottomSpline;
+
+    public float MinY = -20.0f;
+    public float MaxY = 5.0f;
 
     private Vector3 _CenterLastSplinePosTop = Vector3.zero;
     private Vector3 _CenterLastSplinePosBottom = Vector3.zero;
 
     private SplineMeshTiling _MeshTilingTop;
     private SplineMeshTiling _MeshTilingBottom;
+
+    private float _splineEndX = 0.0f;
     void Start()
     {
         _TopSpline.Reset();
@@ -35,33 +39,45 @@ public class MapGeneration : MonoBehaviour
         _MeshTilingTop = _TopSpline.GetComponent<SplineMeshTiling>();
         _MeshTilingBottom = _BottomSpline.GetComponent<SplineMeshTiling>();
         
-        CreateNewSegment(true, 25);
-        CreateNewSegment(false, 25);
-        
-        _MeshTilingTop.CreateMeshes();
-        _MeshTilingBottom.CreateMeshes();
+        _splineEndX = CreateNewSegment(25);
+        Debug.Log("New Spline End: " + _splineEndX);
     }
 
-    private void CreateNewSegment(bool top, int count)
+    private float CreateNewSegment(int count)
     {
-        Random.InitState(0);
-        Spline spline = top ? _TopSpline : _BottomSpline;
+     
+        
+    
+        
         for (int i = 0; i < count; ++i)
         {
-            Vector3 prev = top ? _CenterLastSplinePosTop : _CenterLastSplinePosBottom;
-            float offset = top ? 3.0f : -3.0f;
-            Vector3 pos = new Vector3(prev.x + 4.0f, prev.y + Random.Range(-3.0f, 3.0f), 0.0f);
-            // Vector3 pos = new Vector3(prev.x + 4.0f, prev.y, 0.0f);
-            spline.AddNode(new SplineNode(pos + new Vector3(0.0f, offset, 0.0f), pos + new Vector3(0.0f, offset, 0.0f) + (pos - prev).normalized * 2.0f));
-            if (top)
-            {
-                _CenterLastSplinePosTop = pos;
-            }
-            else
-            {
-                _CenterLastSplinePosBottom = pos;
-            }
+            float maxYDiff = MaxY - _CenterLastSplinePosTop.y;
+            float minYDiff = _CenterLastSplinePosTop.y - MinY;
+            Debug.Log("MaxYDiff: " + maxYDiff);
+            Debug.Log("MinYDiff: " + minYDiff);
+
+            float random = Random.Range(-5.0f + Mathf.Max(5.0f - minYDiff), 5.0f - Mathf.Max(5.0f - maxYDiff, 0.0f));
+            // top spline
+            Vector3 prev = _CenterLastSplinePosTop;
+            float offset = 3.0f;
+            Vector3 pos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
+            _TopSpline.AddNode(new SplineNode(pos + new Vector3(0.0f, offset, 0.0f), pos + new Vector3(0.0f, offset, 0.0f) + (pos - prev).normalized * 2.0f));
+            _CenterLastSplinePosTop = pos;
+            
+            // bottom spline
+            prev = _CenterLastSplinePosBottom;
+            offset = -3.0f;
+            pos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
+            _BottomSpline.AddNode(new SplineNode(pos + new Vector3(0.0f, offset, 0.0f), pos + new Vector3(0.0f, offset, 0.0f) + (pos - prev).normalized * 2.0f));
+            _CenterLastSplinePosBottom = pos;
         }
+        
+        // generate new mesh
+        _MeshTilingTop.CreateMeshes();
+        _MeshTilingBottom.CreateMeshes();
+        
+        // return last generated x coordinate so we know when to generate a new segment later on
+        return _TopSpline.GetSampleAtDistance(_TopSpline.Length).location.x;
     }
 
     public bool IsInTunnel(Vector3 position)
@@ -78,6 +94,12 @@ public class MapGeneration : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(IsInTunnel(TunnelTester.position).ToString());
+        if (Mathf.Abs(Player.position.x - _splineEndX) < 10.0f)
+        {
+            Debug.Log("New segment!");
+            _splineEndX = CreateNewSegment(10);
+        }
+      
+        // Debug.Log(IsInTunnel(Player.position).ToString());
     }
 }
