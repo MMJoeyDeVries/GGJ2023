@@ -21,6 +21,11 @@ public class MapGeneration : MonoBehaviour
     private SplineMeshTiling _MeshTilingBottom;
 
     private float _splineEndX = 0.0f;
+
+    public void Reset() {
+        Debug.Log("Not Implemented");
+    }
+
     void Start()
     {
         _TopSpline.Reset();

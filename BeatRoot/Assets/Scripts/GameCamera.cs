@@ -5,6 +5,7 @@ using SplineMesh;
 
 public class GameCamera : MonoBehaviour
 {
+  public Game game;
   public Spline _FollowSpline;
   public float _YOffset = -3.0f;
   public float _Speed = 5.0f;
@@ -19,6 +20,13 @@ public class GameCamera : MonoBehaviour
 
   void Update()
   {
+
+    // Camera should only track player in PlayState
+    if (game.state.GetType() != typeof(PlayState))
+    {
+      return;
+    }
+
     _Progress += Time.deltaTime * _Speed;
 
     CurveSample sample = _FollowSpline.GetSampleAtDistance(_Progress);

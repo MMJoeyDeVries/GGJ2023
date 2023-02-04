@@ -5,7 +5,7 @@ using UnityEngine;
 class Movement : MonoBehaviour
 {
   private Game game;
-  private Rigidbody2D rigidBody;
+  private Rigidbody rigidBody;
 
   public float forceScale = 10;
   public float pointerScale = 1;
@@ -14,7 +14,7 @@ class Movement : MonoBehaviour
   void Start()
   {
     game = GetComponent<Game>();
-    rigidBody = GetComponent<Rigidbody2D>();
+    rigidBody = GetComponent<Rigidbody>();
   }
 
   // Update is called once per frame

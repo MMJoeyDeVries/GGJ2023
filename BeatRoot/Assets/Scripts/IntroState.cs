@@ -2,34 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-class EndState : GameState
+class IntroState : GameState
 {
+
   public override void OnEnter()
   {
     base.OnEnter();
 
-    Debug.Log("EndState.OnEnter()");
+    Debug.Log("IntroState.OnEnter()");
   }
 
   public override void OnLeave()
   {
     base.OnLeave();
 
-    Debug.Log("EndState.OnLeave()");
+    Debug.Log("IntroState.OnLeave()");
   }
 
   public override void Start()
   {
     base.Start();
 
-    Debug.Log("EndState.Start()");
+    Debug.Log("IntroState.Start()");
   }
 
   public override void Update()
   {
     base.Update();
 
-    if (!this.Active || IsUpdateLocked)
+    if (!this.Active)
     {
       return;
     }

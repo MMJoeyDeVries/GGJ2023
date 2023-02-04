@@ -4,9 +4,16 @@ using UnityEngine;
 
 class MenuState : GameState
 {
+  public MapGeneration mapGeneration;
+
   public override void OnEnter()
   {
     base.OnEnter();
+
+    mapGeneration.Reset();
+
+    // Reset player position
+    transform.position = new Vector3(0, 0, 0);
 
     Debug.Log("MenuState.OnEnter()");
   }
@@ -18,14 +25,18 @@ class MenuState : GameState
     Debug.Log("MenuState.OnLeave()");
   }
 
-  void Start()
+  public override void Start()
   {
+    base.Start();
+
     Debug.Log("MenuState.Start()");
   }
 
-  void Update()
+  public override void Update()
   {
-    if (!this.Active)
+    base.Update();
+
+    if (!Active || IsUpdateLocked)
     {
       return;
     }
