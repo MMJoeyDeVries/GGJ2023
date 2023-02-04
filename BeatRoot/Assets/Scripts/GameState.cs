@@ -5,7 +5,10 @@ using UnityEngine;
 
 public abstract class GameState : MonoBehaviour
 {
+
+
   public GameState next;
+  protected Game game;
 
   private bool active = false;
   public bool Active
@@ -16,19 +19,49 @@ public abstract class GameState : MonoBehaviour
     }
   }
 
+  public float LockDurationInSeconds = 0;
+  private bool isUpdateLocked = false;
+  public bool IsUpdateLocked
+  {
+    get
+    {
+      return this.isUpdateLocked;
+    }
+  }
+
   public virtual void OnEnter()
   {
-    this.active = true;
+    active = true;
+    isUpdateLocked = true;
+
+    StartCoroutine(UnlockUpdateAfterLockDuration());
   }
 
   public virtual void OnLeave()
   {
-    this.active = false;
+    active = false;
   }
+
+  public virtual void Start()
+  {
+    game = GetComponent<Game>();
+  }
+
+  public virtual void Update() { }
 
   protected void Next()
   {
-    this.OnLeave();
+    OnLeave();
     next.OnEnter();
+
+    game.state = next;
+  }
+
+
+  private IEnumerator UnlockUpdateAfterLockDuration()
+  {
+    yield return new WaitForSeconds(LockDurationInSeconds);
+
+    isUpdateLocked = false;
   }
 }
