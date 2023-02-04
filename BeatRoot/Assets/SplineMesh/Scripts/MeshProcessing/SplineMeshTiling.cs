@@ -121,6 +121,7 @@ namespace SplineMesh {
             }
             res.GetComponent<MeshRenderer>().material = material;
             res.GetComponent<MeshCollider>().material = physicMaterial;
+            res.GetComponent<MeshCollider>().includeLayers = LayerMask.NameToLayer("Everything");
             MeshBender mb = res.GetComponent<MeshBender>();
             mb.Source = SourceMesh.Build(mesh)
                 .Translate(translation)
