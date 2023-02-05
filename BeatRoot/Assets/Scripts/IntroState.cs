@@ -79,17 +79,17 @@ class IntroState : GameState
   {
     var fadeDuration = 1.0f;
 
-    yield return new WaitForSeconds(fadeDuration);
-
-    InstructionsText.text = "Once upon a time...\nsomething happened...";
-
-    yield return Utils.FadeTextFromTo(InstructionsText, Utils.WhiteAlpha, Utils.White, fadeDuration);
-    yield return new WaitForSeconds(fadeDuration);
-
-    SkipText.text = "Press a key to skip";
-
-    yield return Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.White, fadeDuration);
-    yield return new WaitForSeconds(fadeDuration);
+    // yield return new WaitForSeconds(fadeDuration);
+    //
+    // InstructionsText.text = "Once upon a time...\nsomething happened...";
+    //
+    // yield return Utils.FadeTextFromTo(InstructionsText, Utils.WhiteAlpha, Utils.White, fadeDuration);
+    // yield return new WaitForSeconds(fadeDuration);
+    //
+    // SkipText.text = "Press a key to skip";
+    //
+    // yield return Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.White, fadeDuration);
+    // yield return new WaitForSeconds(fadeDuration);
 
     // Unlock update
     this._isUpdateLocked = false;
@@ -112,7 +112,7 @@ class IntroState : GameState
 
     // yield return routine3;
     // Director.Stop();
-    yield return new WaitForSeconds(4.0f);
+    yield return new WaitForSeconds(29f);
     
    
 
@@ -128,13 +128,13 @@ class IntroState : GameState
     Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
     cameraFade.FadeOut(2.0f);
     
-    var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
-    var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
+    // var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
+    // var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
 
-
-   
-    yield return routine1;
-    yield return routine2;
+    //
+    //
+    // yield return routine1;
+    // yield return routine2;
 
   }
 }
