@@ -18,6 +18,10 @@ public class MapGeneration : MonoBehaviour
     public float Curvature = 1.0f;
     public float MinY = -20.0f;
     public float MaxY = 5.0f;
+    public GameObject TopObstaclePrefab;
+    public GameObject BottomObstaclePrefab;
+    public Vector3 ObstacleOffset;
+    public float ObstacleChance = 0.4f;
 
     private Vector3 _CenterLastSplinePosTop = Vector3.zero;
     private Vector3 _CenterLastSplinePosBottom = Vector3.zero;
@@ -101,21 +105,24 @@ public class MapGeneration : MonoBehaviour
             float random = Random.Range(-2.0f + Mathf.Max(2.0f - minYDiff, 0.0f), 2.0f - Mathf.Max(2.0f - maxYDiff, 0.0f));
             // top spline
             Vector3 prev = _CenterLastSplinePosTop;
-            Vector3 pos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
-            _TopSpline.AddNode(new SplineNode(pos, pos + (pos - prev).normalized * 2.0f));
-            _CenterLastSplinePosTop = pos;
+            Vector3 topPos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
+            _TopSpline.AddNode(new SplineNode(topPos, topPos + (topPos - prev).normalized * 2.0f));
+            _CenterLastSplinePosTop = topPos;
             
             // bottom spline
             prev = _CenterLastSplinePosBottom;
-            pos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
-            _BottomSpline.AddNode(new SplineNode(pos, pos + (pos - prev).normalized * 2.0f));
-            _CenterLastSplinePosBottom = pos;
+            var bottomPos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
+            _BottomSpline.AddNode(new SplineNode(bottomPos, bottomPos + (bottomPos - prev).normalized * 2.0f));
+            _CenterLastSplinePosBottom = bottomPos;
             
             // center spline
             prev = _CenterLastSplinePos;
-            pos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
-            _CenterSpline.AddNode(new SplineNode(pos, pos + (pos - prev).normalized * 2.0f));
-            _CenterLastSplinePos = pos;
+            var centerPos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
+            _CenterSpline.AddNode(new SplineNode(centerPos, centerPos + (centerPos - prev).normalized * 2.0f));
+            _CenterLastSplinePos = centerPos;
+
+            var addToTop = i % 2 == 0;
+            AddObstacle(addToTop, addToTop ? topPos : bottomPos);
         }
         
         // generate new mesh
@@ -126,6 +133,21 @@ public class MapGeneration : MonoBehaviour
         
         // return last generated x coordinate so we know when to generate a new segment later on
         return _TopSpline.GetSampleAtDistance(_TopSpline.Length).location.x;
+    }
+
+    private void AddObstacle(bool isTop, Vector3 position)
+    {
+        if ((Random.value - this.ObstacleChance) > 0) {
+            return;
+        }
+
+        var obstacle = Instantiate(isTop ? TopObstaclePrefab : BottomObstaclePrefab);
+        obstacle.transform.position = position + (isTop ? -ObstacleOffset : ObstacleOffset);
+
+        var scale = Random.Range(1.5f, 2.5f);
+
+        obstacle.transform.localScale = new Vector3(scale, scale, 1);
+        obstacle.transform.parent = this.transform;
     }
 
     public bool TunnelIntersect(Vector3 position, float radius)
