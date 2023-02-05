@@ -22,7 +22,7 @@ public class GameCamera : MonoBehaviour
   void Update()
   {
     // Camera should only track player in PlayState
-    if (game.state.GetType() != typeof(PlayState) && playState.Paused)
+    if (game.state.GetType() != typeof(PlayState) || playState.Paused)
     {
       return;
     }

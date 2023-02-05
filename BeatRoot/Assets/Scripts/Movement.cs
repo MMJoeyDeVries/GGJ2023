@@ -4,8 +4,9 @@ using UnityEngine;
 
 class Movement : MonoBehaviour
 {
-  private Game game;
-  private Rigidbody rigidBody;
+  private Game _game;
+  private Rigidbody _rigidBody;
+  private PlayState _playState;
 
   public float forceScale = 10;
   public float pointerScale = 1;
@@ -13,8 +14,9 @@ class Movement : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    game = GetComponent<Game>();
-    rigidBody = GetComponent<Rigidbody>();
+    _game = GetComponent<Game>();
+    _rigidBody = GetComponent<Rigidbody>();
+    _playState = GetComponent<PlayState>();
   }
 
   // Update is called once per frame
@@ -25,6 +27,12 @@ class Movement : MonoBehaviour
 
   void FixedUpdate()
   {
+    if (_playState.Paused)
+    {
+      _rigidBody.velocity = Vector3.zero;
+      return;
+    }
+
     var force = Vector3.zero;
 
     if (Input.GetKey(KeyCode.W))
@@ -71,6 +79,6 @@ class Movement : MonoBehaviour
       force = touchPositionRelativeToObject * 2f * pointerScale;
     }
 
-    rigidBody.AddForce(force * forceScale);
+    _rigidBody.AddForce(force * forceScale);
   }
 }
