@@ -16,7 +16,7 @@ class MenuState : GameState
     Debug.Log("MenuState.OnEnter()");
 
     this.gameCamera.Reset();
-    this.transform.position = new Vector3(0, 0, 0);
+    this.transform.position = new Vector3(11.3f, 0.0f, 0f);
     this._isUpdateLocked = true;
 
     StartCoroutine(EnterTimeline());
@@ -59,7 +59,7 @@ class MenuState : GameState
     InstructionsText.text = "Press any key to start";
 
     yield return Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.White, 1.0f);
-    yield return new WaitForSeconds(1);
+    // yield return new WaitForSeconds(1);
 
     this._isUpdateLocked = false;
   }
