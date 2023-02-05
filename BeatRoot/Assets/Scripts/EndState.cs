@@ -5,9 +5,10 @@ using TMPro;
 
 class EndState : GameState
 {
-  public TextMeshProUGUI LeaderBoardTextMesh;
+  public TextMeshProUGUI HighScoreText;
 
   private bool _isUpdateLocked = false;
+  private PlayState _playState;
 
   public override void OnEnter()
   {
@@ -32,6 +33,8 @@ class EndState : GameState
     base.Start();
 
     Debug.Log("EndState.Start()");
+
+    _playState = GetComponent<PlayState>();
   }
 
   public override void Update()
@@ -53,15 +56,18 @@ class EndState : GameState
   {
     this._isUpdateLocked = true;
 
-    LeaderBoardTextMesh.text = "Leaderboard\n\n\n\nLeroy Jenkins: 1000\n\nJohn Doe: 900\n\nJane Doe: 800\n\n";
+    var highScore = Mathf.Max(PlayerPrefs.GetFloat("highScore", 0), _playState.CurrentScore);
+    PlayerPrefs.SetFloat("highScore", highScore);
 
-    yield return Utils.FadeTextFromTo(LeaderBoardTextMesh, LeaderBoardTextMesh.color, Utils.White, 1.0f);
+    HighScoreText.text = highScore.ToString();
+
+    yield return Utils.FadeTextFromTo(HighScoreText, HighScoreText.color, Utils.White, 1.0f);
 
     this._isUpdateLocked = false;
   }
 
   private IEnumerator LeaveTimeline()
   {
-    yield return Utils.FadeTextFromTo(LeaderBoardTextMesh, LeaderBoardTextMesh.color, Utils.WhiteAlpha, 1.0f);
+    yield return Utils.FadeTextFromTo(HighScoreText, HighScoreText.color, Utils.WhiteAlpha, 1.0f);
   }
 }

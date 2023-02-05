@@ -7,7 +7,7 @@ public class PlayState : GameState
 {
   public TextMeshProUGUI InstructionsText;
   public TextMeshProUGUI SkipText;
-  public TextMeshProUGUI LeaderBoardText;
+  public TextMeshProUGUI HighScoreText;
   public TextMeshProUGUI ScoreText;
 
   private bool _paused = true;
@@ -19,7 +19,17 @@ public class PlayState : GameState
     }
   }
 
+  private float _currentScore;
+  public float CurrentScore
+  {
+    get
+    {
+      return _currentScore;
+    }
+  }
+
   private SphereCollider _sphereCollider;
+  private float _startTime;
 
 
   public override void OnEnter()
@@ -57,7 +67,7 @@ public class PlayState : GameState
   {
     base.Update();
 
-    if (!this.Active)
+    if (!this.Active || this.Paused)
     {
       return;
     }
@@ -68,16 +78,27 @@ public class PlayState : GameState
     if (screenPoint.x < 0)
     {
       this.Next();
+      return;
     }
+
+    this._currentScore = Mathf.Round((Time.time - this._startTime) * 10);
+    ScoreText.text = this._currentScore.ToString();
   }
 
   private IEnumerator EnterTimeline()
   {
+    ScoreText.text = "0";
+
+    var highScore = PlayerPrefs.GetFloat("highScore", 0);
+    HighScoreText.text = highScore.ToString();
+
     yield return Utils.FadeTextFromTo(ScoreText, ScoreText.color, Utils.White, 1.0f);
+    yield return Utils.FadeTextFromTo(HighScoreText, HighScoreText.color, Utils.White, 1.0f);
 
     yield return new WaitForSeconds(1.0f);
 
     this._paused = false;
+    this._startTime = Time.time;
   }
 
   private IEnumerator LeaveTimeline()
