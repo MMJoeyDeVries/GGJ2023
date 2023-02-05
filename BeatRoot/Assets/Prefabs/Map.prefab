@@ -135,7 +135,7 @@ MonoBehaviour:
   physicMaterial: {fileID: 0}
   translation: {x: 0, y: 0, z: 0}
   rotation: {x: -90, y: 0, z: 0}
-  scale: {x: 1, y: 3, z: 1}
+  scale: {x: 1, y: 2.8, z: 1}
   generateCollider: 0
   updateInPlayMode: 0
   curveSpace: 1
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   - position: {x: -6, y: 10, z: 0}
     direction: {x: -6, y: 9, z: 0}
     up: {x: 0, y: 1, z: 0}
-    scale: {x: 1, y: 1}
+    scale: {x: 1, y: 3}
     roll: 0
   - position: {x: 0, y: 3, z: 0}
     direction: {x: 1, y: 3, z: 0}
@@ -1406,7 +1406,7 @@ MonoBehaviour:
       position: {x: -6, y: 10, z: 0}
       direction: {x: -6, y: 9, z: 0}
       up: {x: 0, y: 1, z: 0}
-      scale: {x: 1, y: 1}
+      scale: {x: 1, y: 3}
       roll: 0
     n2:
       position: {x: 0, y: 3, z: 0}
@@ -1469,7 +1469,7 @@ MonoBehaviour:
   physicMaterial: {fileID: 0}
   translation: {x: 0, y: 0, z: 0}
   rotation: {x: -90, y: 0, z: 0}
-  scale: {x: 1, y: 1, z: 1}
+  scale: {x: 1, y: 0.5, z: 1}
   generateCollider: 1
   updateInPlayMode: 0
   curveSpace: 1
@@ -1558,7 +1558,7 @@ MonoBehaviour:
   - position: {x: -12, y: 10, z: 0}
     direction: {x: -12, y: 9, z: 0}
     up: {x: 0, y: 1, z: 0}
-    scale: {x: 1, y: 1}
+    scale: {x: 1, y: 3}
     roll: 0
   - position: {x: 0, y: -3, z: 0}
     direction: {x: 1, y: -3, z: 0}
@@ -1580,7 +1580,7 @@ MonoBehaviour:
       position: {x: -12, y: 10, z: 0}
       direction: {x: -12, y: 9, z: 0}
       up: {x: 0, y: 1, z: 0}
-      scale: {x: 1, y: 1}
+      scale: {x: 1, y: 3}
       roll: 0
     n2:
       position: {x: 0, y: -3, z: 0}
@@ -1643,7 +1643,7 @@ MonoBehaviour:
   physicMaterial: {fileID: 0}
   translation: {x: 0, y: 0, z: 0}
   rotation: {x: -90, y: 0, z: 0}
-  scale: {x: 1, y: 1, z: 1}
+  scale: {x: 1, y: 0.5, z: 1}
   generateCollider: 1
   updateInPlayMode: 0
   curveSpace: 1
