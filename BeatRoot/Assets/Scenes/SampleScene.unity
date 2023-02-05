@@ -1598,6 +1598,17 @@ MonoBehaviour:
   SkipText: {fileID: 1429061131}
   LeaderBoardText: {fileID: 856882930}
   ScoreText: {fileID: 663281077}
+--- !u!114 &962924226 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5829198483618311513, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
+  m_PrefabInstance: {fileID: 5829198483724506584}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fba8971bc57f7a45a331249ed2d1379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &985189019
 GameObject:
   m_ObjectHideFlags: 0
@@ -2740,6 +2751,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 927598618}
     - target: {fileID: 4309142868804744238, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
+      propertyPath: gameCamera
+      value: 
+      objectReference: {fileID: 962924226}
+    - target: {fileID: 4309142868804744238, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
       propertyPath: mapGeneration
       value: 
       objectReference: {fileID: 2089083609}
@@ -3143,6 +3158,18 @@ PrefabInstance:
       propertyPath: game
       value: 
       objectReference: {fileID: 927598616}
+    - target: {fileID: 5829198483618311513, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
+      propertyPath: _YOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829198483618311513, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
+      propertyPath: playState
+      value: 
+      objectReference: {fileID: 927598614}
+    - target: {fileID: 5829198483618311513, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
+      propertyPath: FollowSpline
+      value: 
+      objectReference: {fileID: 2043899158}
     - target: {fileID: 5829198483618311513, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
       propertyPath: _FollowSpline
       value: 

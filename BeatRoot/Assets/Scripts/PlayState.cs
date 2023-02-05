@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-class PlayState : GameState
+public class PlayState : GameState
 {
   public TextMeshProUGUI InstructionsText;
   public TextMeshProUGUI SkipText;
   public TextMeshProUGUI LeaderBoardText;
   public TextMeshProUGUI ScoreText;
+
+  private bool _paused = true;
+  public bool Paused
+  {
+    get
+    {
+      return _paused;
+    }
+  }
 
   private SphereCollider _sphereCollider;
 
@@ -19,6 +28,8 @@ class PlayState : GameState
 
     Debug.Log("PlayState.OnEnter()");
 
+    this._paused = true;
+
     StartCoroutine(EnterTimeline());
   }
 
@@ -27,6 +38,8 @@ class PlayState : GameState
     base.OnLeave();
 
     Debug.Log("PlayState.OnLeave()");
+
+    this._paused = true;
 
     StartCoroutine(LeaveTimeline());
   }
@@ -61,6 +74,10 @@ class PlayState : GameState
   private IEnumerator EnterTimeline()
   {
     yield return Utils.FadeTextFromTo(ScoreText, ScoreText.color, Utils.White, 1.0f);
+
+    yield return new WaitForSeconds(1.0f);
+
+    this._paused = false;
   }
 
   private IEnumerator LeaveTimeline()

@@ -143,11 +143,6 @@ public class MapGeneration : MonoBehaviour
         return !sameDirection;
     }
 
-    public void Reset()
-    {
-        
-    }
-    
     void Update()
     {
         if (Player != null)

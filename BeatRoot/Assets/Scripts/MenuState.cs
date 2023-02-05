@@ -6,7 +6,7 @@ using TMPro;
 class MenuState : GameState
 {
   public TextMeshProUGUI InstructionsText;
-  public MapGeneration mapGeneration;
+  public GameCamera gameCamera;
   private bool _isUpdateLocked = false;
 
   public override void OnEnter()
@@ -15,8 +15,7 @@ class MenuState : GameState
 
     Debug.Log("MenuState.OnEnter()");
 
-    mapGeneration.Reset();
-
+    this.gameCamera.Reset();
     this.transform.position = new Vector3(0, 0, 0);
     this._isUpdateLocked = true;
 
