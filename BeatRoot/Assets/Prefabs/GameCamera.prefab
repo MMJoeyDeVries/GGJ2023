@@ -105,7 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fba8971bc57f7a45a331249ed2d1379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FollowSpline: {fileID: 0}
-  _YOffset: -3
+  game: {fileID: 0}
+  playState: {fileID: 0}
+  FollowSpline: {fileID: 0}
+  _YOffset: 0
   _Speed: 5
   _Zoom: -15
