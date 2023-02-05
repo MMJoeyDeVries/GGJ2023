@@ -2886,14 +2886,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 99226054, guid: 7c04d264fa7a279418822912f6e087b6, type: 3}
-      propertyPath: m_Layer
-      value: 5
+    - target: {fileID: 99226056, guid: 7c04d264fa7a279418822912f6e087b6, type: 3}
+      propertyPath: generateCollider
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 350416780, guid: 7c04d264fa7a279418822912f6e087b6, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 190478303}
+    - target: {fileID: 350416780, guid: 7c04d264fa7a279418822912f6e087b6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 350416783, guid: 7c04d264fa7a279418822912f6e087b6, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -2938,6 +2942,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 780868525}
+    - target: {fileID: 1876070738, guid: 7c04d264fa7a279418822912f6e087b6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1876070741, guid: 7c04d264fa7a279418822912f6e087b6, type: 3}
       propertyPath: m_Mesh
       value: 
