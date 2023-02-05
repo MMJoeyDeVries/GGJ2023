@@ -116,7 +116,7 @@ MonoBehaviour:
   translation: {x: 0, y: 0, z: 0}
   rotation: {x: -90, y: 0, z: 0}
   scale: {x: 1, y: 3, z: 1}
-  generateCollider: 1
+  generateCollider: 0
   updateInPlayMode: 0
   curveSpace: 1
   mode: 2
@@ -234,7 +234,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -343,7 +343,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402963666}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d99abf7ec723a4e4da1ca00335561bfe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -462,7 +462,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806707540}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d99abf7ec723a4e4da1ca00335561bfe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -581,7 +581,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347297431}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d99abf7ec723a4e4da1ca00335561bfe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -743,7 +743,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -852,7 +852,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2039579552}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d99abf7ec723a4e4da1ca00335561bfe, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   _TopSpline: {fileID: 1849729238681889596}
-  _CenterSpline: {fileID: 0}
+  _CenterSpline: {fileID: 99226057}
   _BottomSpline: {fileID: 1849729239418759331}
   Width: 3
   Curvature: 1
@@ -1067,9 +1067,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: -2432090755550338912, guid: 79e37a11d72a97d429793f25043c8173, type: 3}
   material: {fileID: 2100000, guid: b48b63f2cae3dc54fb335c776e048856, type: 2}
-  physicMaterial: {fileID: 0}
+  physicMaterial: {fileID: 13400000, guid: d99abf7ec723a4e4da1ca00335561bfe, type: 2}
   translation: {x: 0, y: 0, z: 0}
-  rotation: {x: -90, y: 0, z: 0}
+  rotation: {x: 90, y: 180, z: 0}
   scale: {x: 1, y: 1, z: 1}
   generateCollider: 1
   updateInPlayMode: 0
@@ -1220,7 +1220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: -2432090755550338912, guid: 79e37a11d72a97d429793f25043c8173, type: 3}
   material: {fileID: 2100000, guid: 4529796a6a8ca8b48a448a6ae1ae11be, type: 2}
-  physicMaterial: {fileID: 0}
+  physicMaterial: {fileID: 13400000, guid: d99abf7ec723a4e4da1ca00335561bfe, type: 2}
   translation: {x: 0, y: 0, z: 0}
   rotation: {x: -90, y: 0, z: 0}
   scale: {x: 1, y: 1, z: 1}
