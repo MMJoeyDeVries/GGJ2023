@@ -6,7 +6,8 @@ using SplineMesh;
 public class GameCamera : MonoBehaviour
 {
   public Game game;
-  public Spline _FollowSpline;
+  public PlayState playState;
+  public Spline FollowSpline;
   public float _YOffset = -3.0f;
   public float _Speed = 5.0f;
   public float _Zoom = -15.0f;
@@ -20,16 +21,20 @@ public class GameCamera : MonoBehaviour
 
   void Update()
   {
-
     // Camera should only track player in PlayState
-    if (game.state.GetType() != typeof(PlayState))
+    if (game.state.GetType() != typeof(PlayState) || playState.Paused)
     {
       return;
     }
 
     _Progress += Time.deltaTime * _Speed;
 
-    CurveSample sample = _FollowSpline.GetSampleAtDistance(_Progress);
+    CurveSample sample = FollowSpline.GetSampleAtDistance(_Progress);
     transform.position = new Vector3(sample.location.x, sample.location.y + _YOffset, _Zoom);
+  }
+
+  public void Reset()
+  {
+    _Progress = 0.0f;
   }
 }

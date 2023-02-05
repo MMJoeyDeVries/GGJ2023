@@ -7,7 +7,7 @@ class IntroState : GameState
 {
   public TextMeshProUGUI InstructionsText;
   public TextMeshProUGUI SkipText;
-  public TextMeshProUGUI LeaderBoardText;
+  public TextMeshProUGUI HighScoreText;
   public TextMeshProUGUI ScoreText;
 
   private IEnumerator coroutine;
@@ -43,7 +43,7 @@ class IntroState : GameState
 
     InstructionsText.color = Utils.WhiteAlpha;
     SkipText.color = Utils.WhiteAlpha;
-    LeaderBoardText.color = Utils.WhiteAlpha;
+    HighScoreText.color = Utils.WhiteAlpha;
     ScoreText.color = Utils.WhiteAlpha;
   }
 
