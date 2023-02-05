@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 539088311}
   - component: {fileID: 539088313}
   - component: {fileID: 539088312}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2071644493}
   - component: {fileID: 2071644495}
   - component: {fileID: 2071644494}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WaterParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4930,7 +4930,7 @@ GameObject:
   - component: {fileID: 5247787905240304359}
   - component: {fileID: 927598612}
   - component: {fileID: 927598619}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
