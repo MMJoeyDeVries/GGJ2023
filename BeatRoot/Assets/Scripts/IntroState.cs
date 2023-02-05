@@ -14,7 +14,7 @@ class IntroState : GameState
   public PlayableDirector Director;
 
   private CameraFade cameraFade;
-  
+
   private IEnumerator coroutine;
   private bool _isUpdateLocked = false;
 
@@ -26,12 +26,12 @@ class IntroState : GameState
 
     this._isUpdateLocked = true;
 
-    
+
     cameraFade = Camera.main.GetComponent<CameraFade>();
-    
+
     Camera.main.transform.position = new Vector3(-109.800003f, 38.5f, -10f);
     Director.Play();
-    
+
     this.coroutine = EnterTimeline();
     StartCoroutine(coroutine);
   }
@@ -56,8 +56,6 @@ class IntroState : GameState
     SkipText.color = Utils.WhiteAlpha;
     HighScoreText.color = Utils.WhiteAlpha;
     ScoreText.color = Utils.WhiteAlpha;
-    
-    
   }
 
   public override void Update()
@@ -113,8 +111,8 @@ class IntroState : GameState
     // yield return routine3;
     // Director.Stop();
     yield return new WaitForSeconds(29f);
-    
-   
+
+
 
     // Go to next state (Menu)
     this.Next();
@@ -126,8 +124,11 @@ class IntroState : GameState
 
     Camera.main.orthographicSize = 8.0f;
     Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
+
     cameraFade.FadeOut(2.0f);
-    
+
+    yield return null;
+
     // var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
     // var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
 
