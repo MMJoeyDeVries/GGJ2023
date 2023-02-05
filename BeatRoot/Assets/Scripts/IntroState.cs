@@ -116,7 +116,7 @@ class IntroState : GameState
     
     Director.Stop();
     
-    Camera.main.orthographicSize = 8.0f;
+    Camera.main.orthographicSize = 10.0f;
     Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
     
     cameraFade._FadeOverride = 0.0f;
@@ -131,7 +131,7 @@ class IntroState : GameState
     
     Director.Stop();
 
-    Camera.main.orthographicSize = 8.0f;
+    Camera.main.orthographicSize = 10.0f;
     Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
     cameraFade._FadeOverride = 0.0f;
     

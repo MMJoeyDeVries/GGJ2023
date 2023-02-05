@@ -5,6 +5,7 @@ Shader "Unlit/S_Sprite"
         _Tex1("Tex 1", 2D) = "white" {}
         _Tex2("Tex 2", 2D) = "white" {}
         _Fade("Fade", Range(0,1)) = 1
+        _UseTex2("UseTex2D", Range(0,1)) = 0
     }
     SubShader
     {
@@ -37,6 +38,7 @@ Shader "Unlit/S_Sprite"
             float4 _Tex1_ST;
             sampler2D _Tex2;
             float _Fade;
+            float _UseTex2;
 
             v2f vert (appdata v)
             {
@@ -52,8 +54,12 @@ Shader "Unlit/S_Sprite"
                 fixed4 col1 = tex2D(_Tex1, i.uv);
                 fixed4 col2 = tex2D(_Tex2, i.uv);
 
-                float fade = step(i.uv.y, (_Fade - 0.03) + sin(i.uv.x * 12.0 + i.uv.y * 31.16) * 0.05);
-                fixed4 col = lerp(col1, col2, fade);
+                fixed4 col = col1;
+                if (_UseTex2 > 0.5)
+                {
+                    float fade = step(i.uv.y, (_Fade - 0.03) + sin(i.uv.x * 12.0 + i.uv.y * 31.16) * 0.05);
+                    col = lerp(col1, col2, fade);
+                }
                 return col;
             }
             ENDCG
