@@ -5,8 +5,6 @@ using UnityEngine;
 
 public abstract class GameState : MonoBehaviour
 {
-
-
   public GameState next;
   protected Game game;
 

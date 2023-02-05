@@ -24,7 +24,6 @@ public class Trees : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Player.position.x - _LastPlayerSpawnX);
         if ((Player.position.x - _LastPlayerSpawnX) > width)
         {
             SpawnNewTrees(20);
