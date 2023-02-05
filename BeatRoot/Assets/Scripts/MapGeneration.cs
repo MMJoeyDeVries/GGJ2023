@@ -10,6 +10,7 @@ public class MapGeneration : MonoBehaviour
     public Transform Player;
     
     public Spline _TopSpline;
+    public Spline _CenterSpline;
     public Spline _BottomSpline;
 
     [Header("Config")] 
@@ -20,9 +21,11 @@ public class MapGeneration : MonoBehaviour
 
     private Vector3 _CenterLastSplinePosTop = Vector3.zero;
     private Vector3 _CenterLastSplinePosBottom = Vector3.zero;
+    private Vector3 _CenterLastSplinePos = Vector3.zero;
 
     private SplineMeshTiling _MeshTilingTop;
     private SplineMeshTiling _MeshTilingBottom;
+    private SplineMeshTiling _MeshTilingCenter;
 
     private float _splineEndX = 0.0f;
     void Start()
@@ -41,6 +44,7 @@ public class MapGeneration : MonoBehaviour
 
         _MeshTilingTop = _TopSpline.GetComponent<SplineMeshTiling>();
         _MeshTilingBottom = _BottomSpline.GetComponent<SplineMeshTiling>();
+        _MeshTilingCenter = _CenterSpline.GetComponent<SplineMeshTiling>();
         
         // create 4 segments to override base segments, help fix some issues
         // _TopSpline.nodes[0].Position = new Vector3(0.0f, Width, 0.0f);
@@ -61,15 +65,21 @@ public class MapGeneration : MonoBehaviour
         _BottomSpline.nodes[1].Direction = new Vector3(5.0f, -3.0f, 0.0f);
         _BottomSpline.nodes[2].Position = new Vector3(8.0f, -3.0f, 0.0f);
         _BottomSpline.nodes[2].Direction = new Vector3(9.0f, -3.0f, 0.0f);
+        
+        _CenterSpline.nodes[0].Position = new Vector3(0.0f, 0.0f, 0.0f);
+        _CenterSpline.nodes[0].Direction = new Vector3(1.0f, 0.0f, 0.0f);
+        _CenterSpline.nodes[1].Position = new Vector3(4.0f, 0.0f, 0.0f);
+        _CenterSpline.nodes[1].Direction = new Vector3(5.0f,0.0f, 0.0f);
+        _CenterSpline.nodes[2].Position = new Vector3(8.0f, 0.0f, 0.0f);
+        _CenterSpline.nodes[2].Direction = new Vector3(9.0f, 0.0f, 0.0f);
 
         _CenterLastSplinePosTop = _TopSpline.nodes[2].Position;
         _CenterLastSplinePosBottom = _BottomSpline.nodes[2].Position;
+        _CenterLastSplinePos = _CenterSpline.nodes[2].Position;
         
         _MeshTilingTop.CreateMeshes();
         _MeshTilingBottom.CreateMeshes();
-
-        Debug.Log(_CenterLastSplinePosTop);
-        Debug.Log(_CenterLastSplinePosBottom);
+        _MeshTilingCenter.CreateMeshes();
 
         _splineEndX = CreateNewSegment(25);
     }
@@ -93,11 +103,19 @@ public class MapGeneration : MonoBehaviour
             pos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
             _BottomSpline.AddNode(new SplineNode(pos, pos + (pos - prev).normalized * 2.0f));
             _CenterLastSplinePosBottom = pos;
+            
+            // center spline
+            prev = _CenterLastSplinePos;
+            pos = new Vector3(prev.x + 4.0f, prev.y + random, 0.0f);
+            _CenterSpline.AddNode(new SplineNode(pos, pos + (pos - prev).normalized * 2.0f));
+            _CenterLastSplinePos = pos;
         }
         
         // generate new mesh
         _MeshTilingTop.CreateMeshes();
         _MeshTilingBottom.CreateMeshes();
+        _MeshTilingCenter
+            .CreateMeshes();
         
         // return last generated x coordinate so we know when to generate a new segment later on
         return _TopSpline.GetSampleAtDistance(_TopSpline.Length).location.x;
@@ -123,6 +141,11 @@ public class MapGeneration : MonoBehaviour
         }
 
         return !sameDirection;
+    }
+
+    public void Reset()
+    {
+        
     }
     
     void Update()
