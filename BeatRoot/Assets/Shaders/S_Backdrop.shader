@@ -45,7 +45,7 @@ Shader "Unlit/S_Backdrop"
             fixed4 frag (v2f i) : SV_Target
             {
                 half4 col = half4(0,0,0,1);
-                float3 noise = tex2D(_MainTex, i.uv * float2(1.0, 1.0) + float2(_Time.y * 0.03, 0.0)).rgb;
+                float3 noise = tex2D(_MainTex, i.uv * float2(1.0, 1.0) + float2(_Time.y * -0.06, 0.0)).rgb;
                 noise *= tex2D(_MainTex, i.uv * noise * 4.0).rgb;
                 noise *= tex2D(_MainTex, i.uv * noise + noise * 1.0).rgb;
                 

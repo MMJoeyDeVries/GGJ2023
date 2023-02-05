@@ -71,7 +71,7 @@ Shader "Unlit/S_Signal"
                 noise *= step(noise2, noise * 0.4);
 
                 col.rgb = (noise.r + noise.g + noise.b).xxx * pow(1.0 - VdotN, 5.0) * 5.0;
-                col.rgb += noise.g * pow(VdotN, 25.0) * 15.0 * 20.0;
+                col.rgb += noise.g * pow(VdotN, 25.0) * 5.0;
                 col.rgb += 0.05;
                 col.rgb += (1.0 - VdotN) * 0.1;
                 return col * _Tint;

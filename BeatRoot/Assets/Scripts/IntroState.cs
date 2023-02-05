@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Playables;
 
 class IntroState : GameState
 {
@@ -9,6 +10,10 @@ class IntroState : GameState
   public TextMeshProUGUI SkipText;
   public TextMeshProUGUI HighScoreText;
   public TextMeshProUGUI ScoreText;
+
+  public PlayableDirector Director;
+
+  private CameraFade cameraFade;
 
   private IEnumerator coroutine;
   private bool _isUpdateLocked = false;
@@ -20,6 +25,12 @@ class IntroState : GameState
     Debug.Log("IntroState.OnEnter()");
 
     this._isUpdateLocked = true;
+
+
+    cameraFade = Camera.main.GetComponent<CameraFade>();
+
+    Camera.main.transform.position = new Vector3(-109.800003f, 38.5f, -10f);
+    Director.Play();
 
     this.coroutine = EnterTimeline();
     StartCoroutine(coroutine);
@@ -66,38 +77,42 @@ class IntroState : GameState
   {
     var fadeDuration = 1.0f;
 
-    yield return new WaitForSeconds(fadeDuration);
-
-    InstructionsText.text = "Once upon a time...\nsomething happened...";
-
-    yield return Utils.FadeTextFromTo(InstructionsText, Utils.WhiteAlpha, Utils.White, fadeDuration);
-    yield return new WaitForSeconds(fadeDuration);
-
-    SkipText.text = "Press a key to skip";
-
-    yield return Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.White, fadeDuration);
-    yield return new WaitForSeconds(fadeDuration);
+    // yield return new WaitForSeconds(fadeDuration);
+    //
+    // InstructionsText.text = "Once upon a time...\nsomething happened...";
+    //
+    // yield return Utils.FadeTextFromTo(InstructionsText, Utils.WhiteAlpha, Utils.White, fadeDuration);
+    // yield return new WaitForSeconds(fadeDuration);
+    //
+    // SkipText.text = "Press a key to skip";
+    //
+    // yield return Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.White, fadeDuration);
+    // yield return new WaitForSeconds(fadeDuration);
 
     // Unlock update
     this._isUpdateLocked = false;
+    //
+    // yield return new WaitForSeconds(3);
 
-    yield return new WaitForSeconds(3);
+    // var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
+    // var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
+    //
+    // yield return routine1;
+    // yield return routine2;
+    //
+    // InstructionsText.text = "and then...\nthis text appeared!";
+    // yield return Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.White, fadeDuration);
+    //
+    //
+    // yield return new WaitForSeconds(4);
+    //
+    // var routine3 = Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration);
 
-    var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
-    var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
-
-    yield return routine1;
-    yield return routine2;
-
-    InstructionsText.text = "and then...\nthis text appeared!";
-    yield return Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.White, fadeDuration);
+    // yield return routine3;
+    // Director.Stop();
+    yield return new WaitForSeconds(29f);
 
 
-    yield return new WaitForSeconds(4);
-
-    var routine3 = Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration);
-
-    yield return routine3;
 
     // Go to next state (Menu)
     this.Next();
@@ -107,10 +122,20 @@ class IntroState : GameState
   {
     var fadeDuration = 1.0f;
 
-    var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
-    var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
+    Camera.main.orthographicSize = 8.0f;
+    Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
 
-    yield return routine1;
-    yield return routine2;
+    cameraFade.FadeOut(2.0f);
+
+    yield return null;
+
+    // var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
+    // var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
+
+    //
+    //
+    // yield return routine1;
+    // yield return routine2;
+
   }
 }

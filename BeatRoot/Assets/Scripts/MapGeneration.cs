@@ -18,7 +18,8 @@ public class MapGeneration : MonoBehaviour
     public float Curvature = 1.0f;
     public float MinY = -20.0f;
     public float MaxY = 5.0f;
-    public GameObject ObstaclePrefab;
+    public GameObject TopObstaclePrefab;
+    public GameObject BottomObstaclePrefab;
     public Vector3 ObstacleOffset;
     public float ObstacleChance = 0.4f;
 
@@ -55,30 +56,37 @@ public class MapGeneration : MonoBehaviour
         // _TopSpline.nodes[1].Position = new Vector3(4.0f, Width, 0.0f);
         // _BottomSpline.nodes[1].Position = new Vector3(4.0f, -Width, 0.0f);
 
-        _TopSpline.nodes[0].Position = new Vector3(0.0f, 3.0f, 0.0f);
-        _TopSpline.nodes[0].Direction = new Vector3(1.0f, 3.0f, 0.0f);
-        _TopSpline.nodes[1].Position = new Vector3(4.0f, 3.0f, 0.0f);
-        _TopSpline.nodes[1].Direction = new Vector3(5.0f, 3.0f, 0.0f);
-        _TopSpline.nodes[2].Position = new Vector3(8.0f, 3.0f, 0.0f);
-        _TopSpline.nodes[2].Direction = new Vector3(9.0f, 3.0f, 0.0f);
         
-        _BottomSpline.nodes[0].Position = new Vector3(0.0f, -3.0f, 0.0f);
-        _BottomSpline.nodes[0].Direction = new Vector3(1.0f, -3.0f, 0.0f);
-        _BottomSpline.nodes[1].Position = new Vector3(4.0f, -3.0f, 0.0f);
-        _BottomSpline.nodes[1].Direction = new Vector3(5.0f, -3.0f, 0.0f);
-        _BottomSpline.nodes[2].Position = new Vector3(8.0f, -3.0f, 0.0f);
-        _BottomSpline.nodes[2].Direction = new Vector3(9.0f, -3.0f, 0.0f);
+        _TopSpline.nodes[0].Position = new Vector3(-11.0f, 15.0f, 0.0f);
+        _TopSpline.nodes[0].Direction = new Vector3(-11.0f, 14.0f, 0.0f);
+        _TopSpline.nodes[1].Position = new Vector3(0.0f, 3.0f, 0.0f);
+        _TopSpline.nodes[1].Direction = new Vector3(1.0f, 3.0f, 0.0f);
+        _TopSpline.nodes[2].Position = new Vector3(4.0f, 3.0f, 0.0f);
+        _TopSpline.nodes[2].Direction = new Vector3(5.0f, 3.0f, 0.0f);
+        _TopSpline.nodes[3].Position = new Vector3(8.0f, 3.0f, 0.0f);
+        _TopSpline.nodes[3].Direction = new Vector3(9.0f, 3.0f, 0.0f);
         
-        _CenterSpline.nodes[0].Position = new Vector3(0.0f, 0.0f, 0.0f);
-        _CenterSpline.nodes[0].Direction = new Vector3(1.0f, 0.0f, 0.0f);
-        _CenterSpline.nodes[1].Position = new Vector3(4.0f, 0.0f, 0.0f);
-        _CenterSpline.nodes[1].Direction = new Vector3(5.0f,0.0f, 0.0f);
-        _CenterSpline.nodes[2].Position = new Vector3(8.0f, 0.0f, 0.0f);
-        _CenterSpline.nodes[2].Direction = new Vector3(9.0f, 0.0f, 0.0f);
+        _BottomSpline.nodes[0].Position = new Vector3(-17.0f, 15.0f, 0.0f);
+        _BottomSpline.nodes[0].Direction = new Vector3(-17.0f, 14.0f, 0.0f);
+        _BottomSpline.nodes[1].Position = new Vector3(0.0f, -3.0f, 0.0f);
+        _BottomSpline.nodes[1].Direction = new Vector3(1.0f, -3.0f, 0.0f);
+        _BottomSpline.nodes[2].Position = new Vector3(4.0f, -3.0f, 0.0f);
+        _BottomSpline.nodes[2].Direction = new Vector3(5.0f, -3.0f, 0.0f);
+        _BottomSpline.nodes[3].Position = new Vector3(8.0f, -3.0f, 0.0f);
+        _BottomSpline.nodes[3].Direction = new Vector3(9.0f, -3.0f, 0.0f);
+        
+        _CenterSpline.nodes[0].Position = new Vector3(-14.0f, 15.0f, 0.0f);
+        _CenterSpline.nodes[0].Direction = new Vector3(-14.0f, 14.0f, 0.0f);
+        _CenterSpline.nodes[1].Position = new Vector3(0.0f, 0.0f, 0.0f);
+        _CenterSpline.nodes[1].Direction = new Vector3(1.0f, 0.0f, 0.0f);
+        _CenterSpline.nodes[2].Position = new Vector3(4.0f, 0.0f, 0.0f);
+        _CenterSpline.nodes[2].Direction = new Vector3(5.0f,0.0f, 0.0f);
+        _CenterSpline.nodes[3].Position = new Vector3(8.0f, 0.0f, 0.0f);
+        _CenterSpline.nodes[3].Direction = new Vector3(9.0f, 0.0f, 0.0f);
 
-        _CenterLastSplinePosTop = _TopSpline.nodes[2].Position;
-        _CenterLastSplinePosBottom = _BottomSpline.nodes[2].Position;
-        _CenterLastSplinePos = _CenterSpline.nodes[2].Position;
+        _CenterLastSplinePosTop = _TopSpline.nodes[3].Position;
+        _CenterLastSplinePosBottom = _BottomSpline.nodes[3].Position;
+        _CenterLastSplinePos = _CenterSpline.nodes[3].Position;
         
         _MeshTilingTop.CreateMeshes();
         _MeshTilingBottom.CreateMeshes();
@@ -133,16 +141,12 @@ public class MapGeneration : MonoBehaviour
             return;
         }
 
-        var obstacle = Instantiate(ObstaclePrefab);
+        var obstacle = Instantiate(isTop ? TopObstaclePrefab : BottomObstaclePrefab);
         obstacle.transform.position = position + (isTop ? -ObstacleOffset : ObstacleOffset);
 
-        var scale = new Vector3(1, Random.Range(.5f, 1.5f), 1);
+        var scale = Random.Range(1.5f, 2.5f);
 
-        if (isTop) {
-            scale = Vector3.Scale(obstacle.transform.localScale, new Vector3(1, -1, 1));
-        }
-
-        obstacle.transform.localScale = scale;
+        obstacle.transform.localScale = new Vector3(scale, scale, 1);
         obstacle.transform.parent = this.transform;
     }
 

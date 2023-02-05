@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 539088311}
   - component: {fileID: 539088313}
   - component: {fileID: 539088312}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2071644493}
   - component: {fileID: 2071644495}
   - component: {fileID: 2071644494}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WaterParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4927,10 +4927,10 @@ GameObject:
   - component: {fileID: 4309142868804744239}
   - component: {fileID: 4309142868804744236}
   - component: {fileID: 927598622}
-  - component: {fileID: 6523497807494485135}
+  - component: {fileID: 5247787905240304359}
   - component: {fileID: 927598612}
   - component: {fileID: 927598619}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4980,7 +4980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9953824661db43228e1e342bb537417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: {fileID: 4309142868804744238}
+  initialState: {fileID: 927598621}
   state: {fileID: 0}
 --- !u!114 &927598621
 MonoBehaviour:
@@ -4999,6 +4999,7 @@ MonoBehaviour:
   SkipText: {fileID: 0}
   HighScoreText: {fileID: 0}
   ScoreText: {fileID: 0}
+  Director: {fileID: 0}
 --- !u!114 &4309142868804744238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5053,7 +5054,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4309142868804744226}
   m_Mesh: {fileID: -2432090755550338912, guid: b498799d799d8e04fafd04b1dd161130, type: 3}
---- !u!23 &6523497807494485135
+--- !u!23 &5247787905240304359
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5121,7 +5122,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 3
+  m_CollisionDetection: 1
 --- !u!135 &927598619
 SphereCollider:
   m_ObjectHideFlags: 0
