@@ -1922,6 +1922,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 927598612, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
+      propertyPath: m_Drag
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 927598612, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 927598612, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 927598621, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
       propertyPath: SkipText
       value: 
@@ -1941,6 +1953,10 @@ PrefabInstance:
     - target: {fileID: 4309142868804744226, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309142868804744232, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
+      propertyPath: forceScale
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 4309142868804744235, guid: 42cfa9437edb8436e898688ea02e2d75, type: 3}
       propertyPath: m_RootOrder
@@ -2261,6 +2277,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 927598616}
     - target: {fileID: 5829198483618311513, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
+      propertyPath: _Zoom
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829198483618311513, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
+      propertyPath: _Speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829198483618311513, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
       propertyPath: _YOffset
       value: 0
       objectReference: {fileID: 0}
@@ -2279,6 +2303,10 @@ PrefabInstance:
     - target: {fileID: 5829198483618311588, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829198483618311591, guid: 21deec3add553cb41a146aea4a8b1be9, type: 3}
+      propertyPath: orthographic size
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
