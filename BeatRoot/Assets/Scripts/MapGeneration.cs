@@ -18,7 +18,8 @@ public class MapGeneration : MonoBehaviour
     public float Curvature = 1.0f;
     public float MinY = -20.0f;
     public float MaxY = 5.0f;
-    public GameObject ObstaclePrefab;
+    public GameObject TopObstaclePrefab;
+    public GameObject BottomObstaclePrefab;
     public Vector3 ObstacleOffset;
     public float ObstacleChance = 0.4f;
 
@@ -133,16 +134,12 @@ public class MapGeneration : MonoBehaviour
             return;
         }
 
-        var obstacle = Instantiate(ObstaclePrefab);
+        var obstacle = Instantiate(isTop ? TopObstaclePrefab : BottomObstaclePrefab);
         obstacle.transform.position = position + (isTop ? -ObstacleOffset : ObstacleOffset);
 
-        var scale = new Vector3(1, Random.Range(.5f, 1.5f), 1);
+        var scale = Random.Range(1.5f, 2.5f);
 
-        if (isTop) {
-            scale = Vector3.Scale(obstacle.transform.localScale, new Vector3(1, -1, 1));
-        }
-
-        obstacle.transform.localScale = scale;
+        obstacle.transform.localScale = new Vector3(scale, scale, 1);
         obstacle.transform.parent = this.transform;
     }
 

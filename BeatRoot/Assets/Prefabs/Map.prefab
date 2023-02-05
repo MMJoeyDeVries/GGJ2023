@@ -922,8 +922,10 @@ MonoBehaviour:
   Curvature: 1
   MinY: -20
   MaxY: 5
-  ObstaclePrefab: {fileID: 8375610663267501217, guid: ab81658c136cd48ca96260788c3c362b, type: 3}
+  TopObstaclePrefab: {fileID: 8375610663267501217, guid: fcc39efb3223a46bf91fca1d5806be16, type: 3}
+  BottomObstaclePrefab: {fileID: 8375610663267501217, guid: ab81658c136cd48ca96260788c3c362b, type: 3}
   ObstacleOffset: {x: 0, y: 1, z: 0}
+  ObstacleChance: 0.4
 --- !u!1 &1849729238513093249
 GameObject:
   m_ObjectHideFlags: 0
