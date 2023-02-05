@@ -10,36 +10,23 @@ public abstract class GameState : MonoBehaviour
   public GameState next;
   protected Game game;
 
-  private bool active = false;
+  private bool _active = false;
   public bool Active
   {
     get
     {
-      return this.active;
-    }
-  }
-
-  public float LockDurationInSeconds = 0;
-  private bool isUpdateLocked = false;
-  public bool IsUpdateLocked
-  {
-    get
-    {
-      return this.isUpdateLocked;
+      return this._active;
     }
   }
 
   public virtual void OnEnter()
   {
-    active = true;
-    isUpdateLocked = true;
-
-    StartCoroutine(UnlockUpdateAfterLockDuration());
+    this._active = true;
   }
 
   public virtual void OnLeave()
   {
-    active = false;
+    _active = false;
   }
 
   public virtual void Start()
@@ -58,10 +45,4 @@ public abstract class GameState : MonoBehaviour
   }
 
 
-  private IEnumerator UnlockUpdateAfterLockDuration()
-  {
-    yield return new WaitForSeconds(LockDurationInSeconds);
-
-    isUpdateLocked = false;
-  }
 }
