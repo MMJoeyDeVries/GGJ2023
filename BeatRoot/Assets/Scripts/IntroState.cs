@@ -11,6 +11,8 @@ class IntroState : GameState
   public TextMeshProUGUI HighScoreText;
   public TextMeshProUGUI ScoreText;
 
+  public GameObject GameBackground;
+
   public PlayableDirector Director;
 
   private CameraFade cameraFade;
@@ -119,6 +121,8 @@ class IntroState : GameState
     Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
     
     cameraFade._FadeOverride = 0.0f;
+    
+    GameBackground.SetActive(true);
       
     // Go to next state (Menu)
     this.Next();
@@ -134,11 +138,11 @@ class IntroState : GameState
     Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
     cameraFade._FadeOverride = 0.0f;
     
+    GameBackground.SetActive(true);
+    
     var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
     var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
-
-
-   
+    
     yield return routine1;
     yield return routine2;
     yield return null;

@@ -15,16 +15,19 @@ public class Tree : MonoBehaviour
         material.SetFloat("_Fade", 0.0f);
     }
 
+    [ContextMenu("Hydrate")]
     public void Hydrate()
     {
         if (!hydrated)
-         StartCoroutine(HydateRoutine());
+        {
+            StartCoroutine(HydateRoutine());
+        }
     }
 
     private IEnumerator HydateRoutine()
     {
         float progress = 0.0f;
-
+        
         while (progress < 1.0f)
         {
             progress += Time.deltaTime / 1.0f;
@@ -34,5 +37,7 @@ public class Tree : MonoBehaviour
         }
         material.SetFloat("_Fade", 1.0f);
         hydrated = true;
+
+        yield return null;
     }
 }

@@ -24,7 +24,7 @@ public class Trees : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Player.position.x - _LastPlayerSpawnX) > width)
+        if ((Player.position.x - _LastPlayerSpawnX) > width * 0.5f)
         {
             SpawnNewTrees(10);
         }
@@ -33,7 +33,7 @@ public class Trees : MonoBehaviour
         for (int i = 0; i < spawnedObjects.Count; ++i)
         {
             Vector3 treePos = spawnedObjects[i].transform.position;
-
+            
             if (Player.position.x > treePos.x)
             {
                 spawnedObjects[i].Hydrate();
@@ -54,7 +54,7 @@ public class Trees : MonoBehaviour
 
         for (int i = 0; i < count; ++i)
         {
-            int random = Random.Range(0, Treez.Count - 1);
+            int random = Random.Range(0, Treez.Count);
 
             float randX = Random.Range(-halfWidth, halfWidth);
             Vector3 spawnPos = new Vector3(Player.position.x + randX, Random.Range(YSpawnMin, YSpawnMax), -10.0f);

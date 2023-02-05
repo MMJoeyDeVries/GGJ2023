@@ -10,6 +10,9 @@ public class PlayState : GameState
   public TextMeshProUGUI HighScoreText;
   public TextMeshProUGUI ScoreText;
 
+  public BackgroundMove _Mover1;
+  public BackgroundMove _Mover2;
+
   private bool _paused = true;
   public bool Paused
   {
@@ -59,6 +62,9 @@ public class PlayState : GameState
     base.Start();
 
     Debug.Log("PlayState.Start()");
+    
+    // _Mover1.SetOffset();
+    // _Mover2.SetOffset();
 
     _sphereCollider = GetComponent<SphereCollider>();
   }

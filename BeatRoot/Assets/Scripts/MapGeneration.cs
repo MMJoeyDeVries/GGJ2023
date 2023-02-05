@@ -176,7 +176,7 @@ public class MapGeneration : MonoBehaviour
     {
         if (Player != null)
         {
-            if (Mathf.Abs(Player.position.x - _splineEndX) < 10.0f)
+            if (Mathf.Abs(Player.position.x - _splineEndX) < 15.0f)
             {
                 Debug.Log("New segment!");
                 _splineEndX = CreateNewSegment(10);
