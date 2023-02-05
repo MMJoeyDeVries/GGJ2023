@@ -57,7 +57,7 @@ public class Trees : MonoBehaviour
             int random = Random.Range(0, Treez.Count - 1);
 
             float randX = Random.Range(-halfWidth, halfWidth);
-            Vector3 spawnPos = new Vector3(Player.position.x + randX, Random.Range(YSpawnMin, YSpawnMax), -15.0f);
+            Vector3 spawnPos = new Vector3(Player.position.x + randX, Random.Range(YSpawnMin, YSpawnMax), -10.0f);
             GameObject tree = Instantiate(Treez[random], spawnPos, Quaternion.identity);
             
             spawnedObjects.Add(tree.GetComponent<Tree>());

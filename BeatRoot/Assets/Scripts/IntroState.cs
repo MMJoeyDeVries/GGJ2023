@@ -10,9 +10,6 @@ class IntroState : GameState
   public TextMeshProUGUI SkipText;
   public TextMeshProUGUI HighScoreText;
   public TextMeshProUGUI ScoreText;
-  
-  public BackgroundMove _Mover1;
-  public BackgroundMove _Mover2;
 
   public PlayableDirector Director;
 
@@ -29,9 +26,6 @@ class IntroState : GameState
 
     this._isUpdateLocked = true;
 
-    _Mover1.SetOffset();
-    _Mover2.SetOffset();
-    
     cameraFade = Camera.main.GetComponent<CameraFade>();
     
     Camera.main.transform.position = new Vector3(-109.800003f, 38.5f, -10f);
