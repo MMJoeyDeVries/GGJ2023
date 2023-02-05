@@ -52,7 +52,7 @@ Shader "Unlit/S_Sprite"
                 fixed4 col1 = tex2D(_Tex1, i.uv);
                 fixed4 col2 = tex2D(_Tex2, i.uv);
 
-                float fade = step(i.uv.y, _Fade);
+                float fade = step(i.uv.y, (_Fade - 0.03) + sin(i.uv.x * 12.0 + i.uv.y * 31.16) * 0.05);
                 fixed4 col = lerp(col1, col2, fade);
                 return col;
             }

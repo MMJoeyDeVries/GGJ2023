@@ -13,12 +13,12 @@ public class Trees : MonoBehaviour
     const float width = 100.0f;
     private float _LastPlayerSpawnX = 0.0f;
 
-    private List<GameObject> spawnedObjects = new List<GameObject>();
+    private List<Tree> spawnedObjects = new List<Tree>();
     
     // Start is called before the first frame update
     void Start()
     {
-        SpawnNewTrees(20);
+        SpawnNewTrees(10);
     }
 
     // Update is called once per frame
@@ -26,20 +26,28 @@ public class Trees : MonoBehaviour
     {
         if ((Player.position.x - _LastPlayerSpawnX) > width)
         {
-            SpawnNewTrees(20);
+            SpawnNewTrees(10);
         }
         
         // check when player has passed tree and animate in hydration
-        // TODO
+        for (int i = 0; i < spawnedObjects.Count; ++i)
+        {
+            Vector3 treePos = spawnedObjects[i].transform.position;
+
+            if (Player.position.x > treePos.x)
+            {
+                spawnedObjects[i].Hydrate();
+            }
+        }
     }
 
     void SpawnNewTrees(int count)
     {
         // destroy previous spawn first
-        for (int i = 0; i < spawnedObjects.Count; ++i)
-        {
-            Destroy(spawnedObjects[i]);
-        }
+        // for (int i = 0; i < spawnedObjects.Count; ++i)
+        // {
+        //     Destroy(spawnedObjects[i]);
+        // }
         
       
         float halfWidth = 0.5f * width;
@@ -52,7 +60,7 @@ public class Trees : MonoBehaviour
             Vector3 spawnPos = new Vector3(Player.position.x + randX, Random.Range(YSpawnMin, YSpawnMax), -15.0f);
             GameObject tree = Instantiate(Treez[random], spawnPos, Quaternion.identity);
             
-            spawnedObjects.Add(tree);
+            spawnedObjects.Add(tree.GetComponent<Tree>());
         }
 
         _LastPlayerSpawnX = Player.position.x;

@@ -111,11 +111,16 @@ class IntroState : GameState
     // var routine3 = Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration);
 
     // yield return routine3;
-    // Director.Stop();
-    yield return new WaitForSeconds(29f);
+ 
+    yield return new WaitForSeconds(30f);
     
-   
-
+    Director.Stop();
+    
+    Camera.main.orthographicSize = 8.0f;
+    Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
+    
+    cameraFade._FadeOverride = 0.0f;
+      
     // Go to next state (Menu)
     this.Next();
   }
@@ -123,18 +128,20 @@ class IntroState : GameState
   private IEnumerator LeaveTimeline()
   {
     var fadeDuration = 1.0f;
+    
+    Director.Stop();
 
     Camera.main.orthographicSize = 8.0f;
     Camera.main.transform.position = new Vector3(-0.25f, -1.25f, -10f);
-    cameraFade.FadeOut(2.0f);
+    cameraFade._FadeOverride = 0.0f;
     
-    // var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
-    // var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
+    var routine1 = StartCoroutine(Utils.FadeTextFromTo(InstructionsText, InstructionsText.color, Utils.WhiteAlpha, fadeDuration));
+    var routine2 = StartCoroutine(Utils.FadeTextFromTo(SkipText, SkipText.color, Utils.WhiteAlpha, fadeDuration));
 
-    //
-    //
-    // yield return routine1;
-    // yield return routine2;
 
+   
+    yield return routine1;
+    yield return routine2;
+    yield return null;
   }
 }
