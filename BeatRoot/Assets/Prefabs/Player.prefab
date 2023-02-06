@@ -4999,6 +4999,7 @@ MonoBehaviour:
   SkipText: {fileID: 0}
   HighScoreText: {fileID: 0}
   ScoreText: {fileID: 0}
+  GameBackground: {fileID: 0}
   Director: {fileID: 0}
 --- !u!114 &4309142868804744238
 MonoBehaviour:
@@ -5032,6 +5033,8 @@ MonoBehaviour:
   SkipText: {fileID: 0}
   HighScoreText: {fileID: 0}
   ScoreText: {fileID: 0}
+  _Mover1: {fileID: 0}
+  _Mover2: {fileID: 0}
 --- !u!114 &4309142868804744236
 MonoBehaviour:
   m_ObjectHideFlags: 0
