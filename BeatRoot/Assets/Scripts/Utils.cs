@@ -21,5 +21,7 @@ static class Utils
 
       waitTime += Time.deltaTime / fadeTime;
     }
+
+    textMesh.color = to;
   }
 }

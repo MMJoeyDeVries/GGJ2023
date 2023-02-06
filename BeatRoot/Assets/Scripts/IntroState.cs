@@ -70,7 +70,7 @@ class IntroState : GameState
       return;
     }
 
-    if (Input.anyKey)
+    if (Input.GetKeyDown(KeyCode.Escape))
     {
       this.Next();
     }
